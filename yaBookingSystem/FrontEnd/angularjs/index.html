@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lägg till Lgh</title>
+    <link href="/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="/Content/yaBooking.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Bokning 1.0</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Lägenheter</a></li>
+                    <li><a href="#Boka">Boka</a></li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h1>Lägenheter</h1>
+                        <table id="tbl-lgh" class="table table-bordered table-striped table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>Nr</th>
+                                    <th>Namn</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <div class="col-sm-6">
+                        <h3>Lägg till</h3>
+                        <div class="form-group">
+                            <label for="userid">LghNr</label>
+                            <input type="text" value="" class="form-control" id="userid" placeholder="LghNr" />
+                        </div>
+                        <div class="form-group">
+                            <label for="username">Namn</label>
+                            <input type="text" value="" class="form-control" id="username" placeholder="Namn" />
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Lösenord</label>
+                            <input type="text" value="" class="form-control" id="password" placeholder="Lösenord" />
+                        </div>
+                        <div class="form-group">
+                            <button id="btn-add-lgh" class="btn btn-default">Lägg till</button>
+                        </div>
+                        <div class="form-group">
+                            <div class="alert fade" role="alert">...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/Scripts/jquery-1.9.1.min.js"></script>
+    <script src="/Scripts/bootstrap.min.js"></script>
+</body>
+
+
+
+</html>

@@ -11,6 +11,11 @@ namespace yaBookingSystem
         {
             // Web API configuration and services
 
+            //Only return JSON (removing XML formatter)
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
+
+
+
             // Web API routes
             config.MapHttpAttributeRoutes();
 

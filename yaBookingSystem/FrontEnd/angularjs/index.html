@@ -4,11 +4,17 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Lägg till Lgh</title>
+    <title>Lägg till Användare</title>
     <link href="/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="/Content/yaBooking.css" rel="stylesheet" />
+    <style>
+        .glyphicon{font-size: 20px;}
+        .glyphicon-plus{float: right;}
+        a.glyphicon{text-decoration: none;cursor: pointer;}
+        .glyphicon-trash{margin-left: 10px;}
+    </style>
 </head>
-<body>
+<body ng-app="UsersApp">
     <!-- Fixed navbar -->
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -23,49 +29,66 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Lägenheter</a></li>
+                    <li class="active"><a href="#">Användare</a></li>
                     <li><a href="#Boka">Boka</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
     </nav>
 
-    <div class="container">
+    <div class="container" ng-controller="UsersCtrl" ng-init="listUsers()">
         <div class="panel panel-default">
+            <div class="panel-heading">
+                Användare
+                <a href="#" class="glyphicon glyphicon-plus" onclick="$('.usersform').slideDown();"></a>
+            </div>
             <div class="panel-body">
+                <div class="alert alert-danger none"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;<p></p></div>
+                <div class="alert alert-success none"><span class="glyphicon glyphicon-ok"></span>&nbsp;<p></p></div>
                 <div class="row">
-                    <div class="col-sm-6">
-                        <h1>Lägenheter</h1>
-                        <table id="tbl-lgh" class="table table-bordered table-striped table-condensed">
-                            <thead>
-                                <tr>
-                                    <th>Nr</th>
-                                    <th>Namn</th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                        </table>
+                    <div class="col-sm-6 usersform none">
+                        <form>
+                            <div class="form-group">
+                                <label for="userid">Nr</label>
+                                <input type="text" value="" class="form-control" id="userid" placeholder="Nr" ng-model="tempUser.Id" />
+                            </div>
+                            <div class="form-group">
+                                <label for="username">Namn</label>
+                                <input type="text" value="" class="form-control" id="username" placeholder="Namn" ng-model="tempUser.Name" />
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Lösenord</label>
+                                <input type="text" value="" class="form-control" id="password" placeholder="Lösenord" ng-model="tempUser.Password" />
+                            </div>
+                            <div class="form-group">
+                                <button id="btn-add-user" class="btn btn-success" ng-hide="editMode" ng-click="addUser()">Lägg till</button>
+                                <button id="btn-add-user" class="btn btn-success" ng-hide="!editMode" ng-click="saveEditUser()">Uppdatera</button>
+                                <button id="btn-cancel" class="btn btn-default" onclick="$('.usersform').slideUp(); $('.form-control').val('');">Avbryt</button>
+                            </div>
+                        </form>
                     </div>
                     <div class="col-sm-6">
-                        <h3>Lägg till</h3>
-                        <div class="form-group">
-                            <label for="userid">LghNr</label>
-                            <input type="text" value="" class="form-control" id="userid" placeholder="LghNr" />
-                        </div>
-                        <div class="form-group">
-                            <label for="username">Namn</label>
-                            <input type="text" value="" class="form-control" id="username" placeholder="Namn" />
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Lösenord</label>
-                            <input type="text" value="" class="form-control" id="password" placeholder="Lösenord" />
-                        </div>
-                        <div class="form-group">
-                            <button id="btn-add-lgh" class="btn btn-default">Lägg till</button>
-                        </div>
-                        <div class="form-group">
-                            <div class="alert fade" role="alert">...</div>
-                        </div>
+                        <table id="tbl-users" class="table table-bordered table-striped table-condensed">
+                            <thead>
+                                <tr>
+                                    <th style="width:10%;">Nr</th>
+                                    <th style="width:75%;">Namn</th>
+                                    <th style="width:15%;">&nbsp;</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr ng-repeat="user in users">
+                                    <td>{{user.Id}}</td>
+                                    <td>{{user.Name}}</td>
+                                    <td class="nowrap">
+                                        <a href class="glyphicon glyphicon-edit" ng-click="editUser(user)"></a>
+                                        <a href class="glyphicon glyphicon-trash" ng-click="deleteUser(user)"></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <loading></loading>
                     </div>
                 </div>
             </div>

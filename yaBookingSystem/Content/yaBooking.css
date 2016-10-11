@@ -1,3 +1,24 @@
 ﻿body {
   padding-top: 75px;
 }
+
+.none { 
+    display:none;
+}
+
+.alert > p {
+    display:inline;
+    margin-left:5px;
+}
+
+.loading > img {
+    margin-right: 10px;
+}
+
+.text-center{
+    text-align: center;
+}
+
+.nowrap{
+    white-space: nowrap;
+}
